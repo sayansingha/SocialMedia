@@ -16,7 +16,8 @@ const Signin = () =>{
                 password,
                 email
             })
-        }).then(res=>res.json())
+        })
+        .then(res=>res.json())
         .then(data=>{
             if(data.error){
                 M.toast({html: data.error})
@@ -32,7 +33,7 @@ const Signin = () =>{
     return (
     <div>
         <div className="card auth-card">
-            <h2>Sign In</h2>
+            <h2>Sign Up</h2>
             <input
                 type="text"
                 placeholder="name"
@@ -59,7 +60,7 @@ const Signin = () =>{
             />
 
              <button className="btn waves-effect waves-light" type="submit" name="action"
-             onClick={()=>PostData()}
+             onClick={PostData}
              >
                 Sign up
             </button>
