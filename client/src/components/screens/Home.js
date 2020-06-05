@@ -12,8 +12,11 @@ const Home = () =>{
         })
         .then(res=>res.json())
         .then(data=>{
+            console.log(data)
             setPosts(data.posts);
-        }).catch(err=>console.log(err));
+        }).catch(err=>{
+            console.log(err)
+        });
      },[])
 
      const PostComment=(postId)=>{
@@ -55,7 +58,7 @@ const Home = () =>{
         <div className="home">
             {posts.map(post => {
                 return (
-                <div className="card home-card">
+                <div className="card home-card" key={post._id}>
                     <h5>{post.postedBy.name}</h5>
                     <div className="card-image">
                         <img src={post.photo} />
