@@ -1,0 +1,29 @@
+.auth-card {
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    margin: 10px auto;
+}
+
+.item{
+    width: 30%;
+}
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.home-card{
+    max-width: 500px;
+    height: max-content;
+    margin: 26px auto;
+    
+  }
+
+  #toast-container{
+    top:30px !important;
+    right: 20px !important;
+    left: auto !important;
+  }
