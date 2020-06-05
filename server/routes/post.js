@@ -6,6 +6,42 @@ const Post = mongoose.model("Post");
 const requiredLogin = require('../middleware/requiredLogin')
 
 
+router.post('/comment',(req,res)=>{
+    const {comment, userId, userName, postId} = req.body;
+
+    if(!comment || !userId || !userName || !postId) {
+        return res.status(422).json({error: "Please add all the fields."});
+    }
+    // PersonModel.update(
+    //     { _id: person._id }, 
+    //     { $push: { friends: friend } },
+    //     done
+    // );
+    Post.update({
+        _id: postId
+    },{
+        $push:{
+            comments: {
+                comment,
+                userId,
+                userName
+            }
+        }
+    }, function(err, result){
+
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.send(result)
+        }
+
+    })
+
+})
+
+
+
 router.get('/allpost', (req,res)=>{
     Post.find()
     .populate("postedBy","_id name")
@@ -32,7 +68,8 @@ router.post('/createpost', requiredLogin,(req,res)=>{
         title,
         body,
         photo: pic,
-        postedBy: req.user
+        postedBy: req.user,
+        comments: []
     })
 
 
