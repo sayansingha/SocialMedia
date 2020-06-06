@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import {Link,useHistory} from 'react-router-dom'
 import M from 'materialize-css'
-const Home = () =>{
+const Home = (options) =>{
     const history = useHistory();
     const [posts,setPosts] = useState([]);
     const [comment, setComment] = useState("");
+    const location = options.location;
 
     useEffect(()=>{
         fetch("/allpost",{
@@ -44,11 +45,13 @@ const Home = () =>{
         .then(res=>res.json())
         .then(data=>{
             if(data.error){
-                M.toast({html: data.error})
+                // M.toast({html: data.error})
             }
             else{
-                M.toast({html:data.message})
-                history.push('/');
+                // M.toast({html:data.message})
+                // location.reload();
+                history.push('/temp')
+                history.goBack()
 
             }
         }).catch(err=>console.log(err));
